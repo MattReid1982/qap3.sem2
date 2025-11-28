@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import ButtonA from "./BtnA";
-import ButtonI from "./BtnI";
+import ButtonA from "./components/BtnA.jsx";
+import ButtonI from "./components/BtnI.jsx";
 import "./App.css";
 import Header from "./components/Header.jsx";
 
