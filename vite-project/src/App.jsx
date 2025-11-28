@@ -6,8 +6,7 @@ import Header from "./components/Header.jsx";
 
 function App() {
   const [Countries, setCountries] = useState([]); //Store country data
-  const [showA, setShowA] = useState(false);
-  const [showI, setShowI] = useState(false);
+  const [filtered, setFiltered] = useState([]);
 
   // Fetch the countries once the page is loaded.
   useEffect(() => {
@@ -34,19 +33,29 @@ function App() {
     loadData(); //Calls the function
   }, []); // Leave the array empty, so it only runs once
 
+  // Filter logic
+  function filterByLetter(letter) {
+    const result = Countries.filter((c) => c.name.startsWith(letter));
+    setFiltered(result);
+  }
+
   return (
     <>
       <Header />
 
       <div className="btn-area">
-        <ButtonA onclick={() => setShowA(!showA)} />
-        <ButtonI onclick={() => setShowI(!showI)} />
+        <ButtonA onClick={() => filterByLetter("A")} />
+        <ButtonI onClick={() => filterByLetter("I")} />
       </div>
 
-      {showA && <p>You clicked button A!</p>}
-      {showI && <p>You clicked button I!</p>}
-
       <h2>Total Countries Loaded: {Countries.length}</h2>
+      <ul>
+        {filtered.map((c) => (
+          <li key={c.cca3}>
+            <img src={c.flag} width="30" alt="" /> {c.name} - {c.capital}
+          </li>
+        ))}
+      </ul>
     </>
   );
 }
