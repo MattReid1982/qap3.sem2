@@ -25,7 +25,7 @@ function App() {
           cca3: c.cca3,
         }));
 
-        setAllCountries(formatted);
+        setCountries(formatted);
       } catch (err) {
         console.log("API error:", err);
       }
