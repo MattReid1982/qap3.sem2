@@ -1,13 +1,5 @@
-const BtnA = ({ text, color, onAdd }) => {
-  return (
-    <div>
-      <button
-        className="BtnI"
-        style={{ backgroundColor: color }}
-        onClick={onAdd}
-      >
-        {text}
-      </button>
-    </div>
-  );
+const ButtonI = ({ onClick }) => {
+  return <button onClick={onClick}>Button I</button>;
 };
+
+export default ButtonI;
