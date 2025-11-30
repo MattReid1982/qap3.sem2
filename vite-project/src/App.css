@@ -1,8 +1,9 @@
+/* Body styles */
 body {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   margin: 20px;
 }
-
+/* Button Styles */
 button {
   padding: 10px 20px;
   background: #444;
@@ -14,4 +15,28 @@ button {
 
 button:hover {
   background: #222;
+}
+
+/* Table styles */
+.country-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.country-table th,
+.country-table td {
+  border: 1px solid black;
+  padding: 10px;
+  text-align: left;
+}
+
+.country-table img {
+  border: 1px solid #ccc;
+}
+
+.country-table th {
+  background-color: slateblue;
+  font-weight: bold;
+  color: white;
 }
