@@ -12,17 +12,22 @@ function App() {
   useEffect(() => {
     async function loadData() {
       try {
-        const res = await fetch("https://restcountries.com/v3.1/all");
+        const res = await fetch(
+          "https://restcountries.com/v3.1/all?fields=name,capital,flags,borders,cca3"
+        );
+
         const data = await res.json();
 
         // Clean the data
-        const formatted = data.map((c) => ({
-          name: c.name?.official || "unknown",
-          capital: c.capital ? c.capital[0] : "No Capital",
-          flag: c.flags?.png || "",
-          borders: c.borders || [],
-          cca3: c.cca3,
-        }));
+        const formatted = data.map((c) => {
+          return {
+            name: c.name?.official || "Unknown",
+            capital: c.capital ? c.capital[0] : "No Capital",
+            flag: c.flags?.png || "",
+            borders: borders,
+            cca3: c.cca3,
+          };
+        });
 
         setCountries(formatted);
       } catch (err) {
@@ -49,13 +54,29 @@ function App() {
       </div>
 
       <h2>Total Countries Loaded: {Countries.length}</h2>
-      <ul>
-        {filtered.map((c) => (
-          <li key={c.cca3}>
-            <img src={c.flag} width="30" alt="" /> {c.name} - {c.capital}
-          </li>
-        ))}
-      </ul>
+
+      <table className="country-table">
+        <thead>
+          <tr>
+            <th>Flag</th>
+            <th>Name</th>
+            <th>Capital</th>
+            <th>Borders</th>
+          </tr>
+        </thead>
+        <tbody>
+          {filtered.map((c) => (
+            <tr key={c.cca3}>
+              <td>
+                <img src={c.flag} width="40" />
+              </td>
+              <td>{c.name}</td>
+              <td>{c.capital}</td>
+              <td>{c.borders.length > 0 ? c.borders.join(", ") : "None"}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </>
   );
 }
