@@ -1,3 +1,4 @@
+// Header function
 const Header = () => {
   return (
     <header>

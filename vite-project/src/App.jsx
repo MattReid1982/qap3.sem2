@@ -1,9 +1,11 @@
+//Imports from other components for function
 import { useState, useEffect } from "react";
 import ButtonA from "./components/BtnA.jsx";
 import ButtonI from "./components/BtnI.jsx";
 import "./App.css";
 import Header from "./components/Header.jsx";
 
+//useState functions
 function App() {
   const [Countries, setCountries] = useState([]); //Store country data
   const [filtered, setFiltered] = useState([]);
@@ -24,11 +26,11 @@ function App() {
             name: c.name?.official || "Unknown",
             capital: c.capital ? c.capital[0] : "No Capital",
             flag: c.flags?.png || "",
-            borders: borders,
+            borders: c.borders,
             cca3: c.cca3,
           };
         });
-
+        //Error message if applicable
         setCountries(formatted);
       } catch (err) {
         console.log("API error:", err);
@@ -43,9 +45,10 @@ function App() {
     const result = Countries.filter((c) => c.name.startsWith(letter));
     setFiltered(result);
   }
-
+  // Display the Data selected
   return (
     <>
+      {/* Header/ buttons and table */}
       <Header />
 
       <div className="btn-area">
@@ -65,6 +68,7 @@ function App() {
           </tr>
         </thead>
         <tbody>
+          {/* Filter the data for the table and set key to allow it to display properly in browser */}
           {filtered.map((c) => (
             <tr key={c.cca3}>
               <td>
@@ -80,5 +84,5 @@ function App() {
     </>
   );
 }
-
+// Export the app
 export default App;
